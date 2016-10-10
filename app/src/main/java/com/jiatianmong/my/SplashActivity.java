@@ -67,8 +67,9 @@ public class SplashActivity extends Activity {
         rl_root.setAnimation(animationSet);
 
         animationSet.setAnimationListener(new Animation.AnimationListener() {
+
+
             private boolean mFirst_enter_flag;
-            private Intent mIntent;
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -81,11 +82,13 @@ public class SplashActivity extends Activity {
                 //如果是第一次进入，让其跳转新手引导界面，否则跳转主页面
                 //SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
                 //boolean first_enter_flag = sharedPreferences.getBoolean("first_enter_flag", true);
-                mFirst_enter_flag = ShaPreUtils.getBoolean(SplashActivity.this, "first_enter_flag", true);
+                Intent mIntent;
+                mFirst_enter_flag = ShaPreUtils.getBoolean(getApplicationContext(), "first_enter_flag", true);
                 if (mFirst_enter_flag) {
                     //新手引导界面
                     mIntent = new Intent(getApplicationContext(), GuideActivity.class);
-                    System.out.println("第一次进入闪屏页面");
+                    System.out.println("进入闪屏页面");
+
                 } else {
                     //主页面
                     mIntent = new Intent(getApplicationContext(), HomeActivity.class);

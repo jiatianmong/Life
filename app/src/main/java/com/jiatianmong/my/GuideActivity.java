@@ -47,12 +47,17 @@ public class GuideActivity extends Activity {
 
         //2初始化
         init_viewpager();
+
         //适配器
         mViewPager.setAdapter(new GuideAdapter());
-        //对mViewPager和btnStart设置监听
-        mViewPager_btnStart_Listener();
+
         // 监听layout方法结束的事件,位置确定好之后再获取圆点间距
         count_point_dis();
+
+        //对mViewPager和btnStart设置监听
+        mViewPager_btnStart_Listener();
+
+
     }
 
     private void count_point_dis() {
@@ -85,8 +90,7 @@ public class GuideActivity extends Activity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 // 当页面滑动过程中的回调
-                System.out.println("当前位置:" + position + ";移动偏移百分比:"
-                        + positionOffset);
+                // System.out.println("当前位置:" + position + ";移动偏移百分比:"+ positionOffset);
                 // 更新小红点距离
                 int leftMargin = (int) (mPointDis * positionOffset) + position
                         * mPointDis;// 计算小红点当前的左边距
@@ -114,11 +118,10 @@ public class GuideActivity extends Activity {
             }
         });
         btnStart.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //更新sp, 已经不是第一次进入了
-                ShaPreUtils.setBoolean(getApplicationContext(), "is_first_enter", false);
+                ShaPreUtils.setBoolean(getApplicationContext(), "first_enter_flag", false);
                 //跳到主页面
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 finish();
