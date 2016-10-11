@@ -64,8 +64,7 @@ public class GuideActivity extends Activity {
         // 计算两个圆点的距离
         // 移动距离=第二个圆点left值 - 第一个圆点left值
         // measure->layout(确定位置)->draw(activity的onCreate方法执行结束之后才会走此流程)
-        // mPointDis = llContainer.getChildAt(1).getLeft()
-        // - llContainer.getChildAt(0).getLeft();
+        // mPointDis = llContainer.getChildAt(1).getLeft()- llContainer.getChildAt(0).getLeft();
         // System.out.println("圆点距离:" + mPointDis);
 
         // 监听layout方法结束的事件,位置确定好之后再获取圆点间距
@@ -133,6 +132,7 @@ public class GuideActivity extends Activity {
     /**
      * 初始化控件，声明一个数组存放三张图片的id，并设置为ImageView的背景
      * 然后放到一个集合当中，方便适配器中取view
+     * =顺便初始化滑动的小灰点
      */
     private void init_viewpager() {
         mImageViews = new ArrayList<>();
@@ -141,9 +141,11 @@ public class GuideActivity extends Activity {
             imageView.setBackgroundResource(mViewPagerId[i]);
             mImageViews.add(imageView);
 
+
             //初始化小圆点
             ImageView poitView = new ImageView(this);
             poitView.setImageResource(R.drawable.shape_point_gray);//设置shape形状
+
             // 初始化布局参数, 宽高包裹内容,父控件是谁,就是谁声明的布局参数
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
